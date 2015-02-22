@@ -1,0 +1,44 @@
+{% extends "core/base/index.html" %} 
+{% load static %}
+
+{% block breadcumbs %}
+	Página Inicial
+{% endblock %}
+
+{% block index %}
+
+<!--========================================================================== Content Part 1 =====================================================================================-->
+
+<div>
+
+		<div id="accordio" style="color:black;width:100%;font-size:11px">
+			<h3>
+				{% block subtitulo %}
+					PÁGINA INICIAL
+				{% endblock %}
+			</h3>
+		
+			<div>
+
+			{% if user.is_active %}
+
+				area do usuario logado
+
+			{% else %}
+
+				nao logado
+
+			{% endif %}				
+
+
+
+			</div>	
+				
+				
+		</div>
+
+</div>
+
+
+{% endblock %}
+

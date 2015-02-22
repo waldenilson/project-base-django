@@ -1,0 +1,16 @@
+bin
+build
+include
+lib
+local
+man
+share
+Scripts
+.Python
+*~
+*.log
+*.pot
+*.pyc
+local_settings.py
+.idea/*
+.DS_Store

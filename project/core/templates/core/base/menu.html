@@ -1,0 +1,31 @@
+					
+					<ul id="menu" style="font-size:15px">
+					<li>
+					<a href="/" title="">
+					<span>Página Inicial</span>
+					</a>
+					</li>
+					
+					<li>
+					<a href="/creditos/" title="">
+					<span>Créditos</span>
+					</a>
+					</li>
+										
+					{% if perms.controle_usuario %}
+					<li><a href="#">Usuário</a>
+					<ul>
+					{% if perms.usuario_consulta %}
+					<li><a href="/usuario/consulta/">Controle</a></li>
+					{% endif %}
+					{% if perms.grupo_consulta %}
+					<li><a href="/grupo/consulta/">Grupo</a></li>
+					{% endif %}
+					{% if perms.permissao_consulta %}
+					<li><a href="/permissao/consulta/">Permissão</a></li>
+					{% endif %}
+					</ul>
+					</li>
+					{% endif %}
+					
+					</ul>

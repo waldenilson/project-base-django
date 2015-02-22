@@ -1,0 +1,4 @@
+00=servidor nao acessivel ou fora do ar
+01=erro no(s) parametro(s) do webservice
+02=erro na chave de acesso do webservice
+03=nenhum registro encontrado na requisicao realizada
