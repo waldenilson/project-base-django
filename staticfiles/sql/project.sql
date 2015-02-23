@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `email` varchar(75) NOT NULL,
-  `endereco_id` int(11) DEFAULT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime NOT NULL
@@ -93,8 +92,8 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
 -- Fazendo dump de dados para tabela `auth_user`
 --
 
-INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `endereco_id`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'sha1$d50f7$70c8e1fea16f38ed754002307f80878bee69326a', '2015-02-04 17:17:20', 1, 'admin', 'Waldenilson', 'Carneiro', 'waldenilsonnovaes@gmail.com', NULL, 1, 1, '2015-01-19 11:33:52');
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'sha1$d50f7$70c8e1fea16f38ed754002307f80878bee69326a', '2015-02-04 17:17:20', 1, 'admin', 'Waldenilson', 'Carneiro', 'waldenilsonnovaes@gmail.com', 1, 1, '2015-01-19 11:33:52');
 
 -- --------------------------------------------------------
 
@@ -201,7 +200,7 @@ ALTER TABLE `auth_permission`
 -- Índices de tabela `auth_user`
 --
 ALTER TABLE `auth_user`
- ADD PRIMARY KEY (`id`), ADD KEY `auth_user_656d9b16` (`endereco_id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `django_admin_log`
@@ -283,12 +282,6 @@ ADD CONSTRAINT `user_id_refs_id_650f49a6` FOREIGN KEY (`user_id`) REFERENCES `au
 --
 ALTER TABLE `auth_permission`
 ADD CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
-
---
--- Restrições para tabelas `auth_user`
---
-ALTER TABLE `auth_user`
-ADD CONSTRAINT `endereco_id_refs_id_61ac5d84` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`);
 
 --
 -- Restrições para tabelas `django_admin_log`
