@@ -2,12 +2,12 @@ from django.contrib.auth.decorators import login_required, permission_required,\
     user_passes_test
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from pedirservico.core.models import AuthGroup, AuthPermission,\
+from project.core.models import AuthGroup, AuthPermission,\
     AuthGroupPermissions, AuthUser, DjangoContentType
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
-from pedirservico.core.util.functions import verificar_permissao_grupo
-from pedirservico.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
+from project.core.util.functions import verificar_permissao_grupo
+from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
 from odslib import ODS
 
 nome_relatorio      = "relatorio_grupo"

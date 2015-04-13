@@ -4,15 +4,15 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template.context import RequestContext
 from django.contrib import messages
-from pedirservico.core.models import AuthUser, AuthGroup, AuthUserGroups
+from project.core.models import AuthUser, AuthGroup, AuthUserGroups
 import datetime
 import hashlib
 import json
 from collections import OrderedDict
 from django.http import HttpResponse
-from pedirservico.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
+from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
 from odslib import ODS
-from pedirservico.core.util.functions import verificar_permissao_grupo
+from project.core.util.functions import verificar_permissao_grupo
 
 nome_relatorio      = "relatorio_usuario"
 response_consulta  = "/usuario/consulta/"
