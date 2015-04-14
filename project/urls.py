@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf.urls.defaults import patterns, url, include
 admin.autodiscover()
 
-project = 'pedirservico'
+project = 'project'
 
 handler404 = project+'.core.views_excecoes.pagina_nao_encontrada'
 handler403 = project+'.core.views_excecoes.permissao_negada'
@@ -30,12 +30,6 @@ urlpatterns = patterns('',
     url(r'^usuario/consulta/', 'project.core.admin.usuario.consulta'),
     url(r'^usuario/cadastro/', 'project.core.admin.usuario.cadastro'),
     url(r'^usuario/edicao/(?P<id>\d+)/', 'project.core.admin.usuario.edicao'),
-
-
-    # url(r'^maria/', include('pedirservico.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # CONTROLE AUTENTICACAO
     url(r'^login/', 'django.contrib.auth.views.login', {"template_name":"core/index.html"}),
