@@ -4,12 +4,14 @@
 	Acesso Restrito | Permissao | Edicao
 {% endblock %}
 
+{% block subtitulo %}
+	
+	EDITAR PERMISSÃO
+	
+{% endblock %}
+
 {% block formulario %}
-<div id="tabs" style="color:black;width:100%;font-size:11px">
-<ul>
-	<li><a href="#tabs-1">EDITAR PERMISSAO</a></li>
-</ul>
-<div id="tabs-1">		
+
 	<form method="post" action=".">
 		{% csrf_token %}
 		<div style="width:100%;font-size:12px;text-align:left">
@@ -43,6 +45,5 @@
 		</table>
 		
 	</form>
-</div>
-</div>
+
 {% endblock %}

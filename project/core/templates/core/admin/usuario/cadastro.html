@@ -2,21 +2,22 @@
 {% load static %} 
 
 {% block breadcumbs %}
-	Acesso Restrito | Usuario | Cadastro
+	Acesso Restrito | Usuário | Cadastro
+{% endblock %}
+
+{% block subtitulo %}
+	
+	CADASTRAR USUÁRIO
+	
 {% endblock %}
 
 {% block formulario %}
-<div id="tabs" style="color:black;width:100%;font-size:11px">
-<ul>
-	<li><a href="#tabs-1">CADASTRAR USUARIO</a></li>
-</ul>
-<div id="tabs-1">		
 		
 	<form method="post" action=".">
 		{% csrf_token %}
 		<div style="width:100%;font-size:12px;text-align:left">
 				<table>
-				   <tr> <td class="colunaTabela"> <label>Nome:</label> </td><td> <input size="35" name="first_name" /> </td> </tr>
+				   <tr> <td class="colunaTabela"> <label>Nome:</label> </td><td> <input name="first_name" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Sobrenome:</label> </td><td> <input  name="last_name" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Email:</label> </td><td> <input name="email" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Login:</label> </td><td> <input name="username" /> </td> </tr>
@@ -58,6 +59,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
-</div>
+
 {% endblock %}

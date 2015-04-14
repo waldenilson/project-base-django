@@ -1,16 +1,17 @@
 {% extends "core/base/cadastro.html" %} 
 {% load static %} 
 {% block breadcumbs %}
-	Acesso Restrito | Grupo | Edicao
+	Acesso Restrito | Grupo | Edição
+{% endblock %}
+
+{% block subtitulo %}
+	
+	EDITAR GRUPO
+	
 {% endblock %}
 
 {% block formulario %}
-<div id="tabs" style="color:black;width:100%;font-size:11px">
-<ul>
-	<li><a href="#tabs-1">EDITAR GRUPO</a></li>
-</ul>
-<div id="tabs-1">		
-	
+
 	<form method="post" action=".">
 		{% csrf_token %}
 		<div style="width:100%;font-size:12px;text-align:left">
@@ -21,7 +22,7 @@
 		
 		<br />
 			<div style="width:100%;font-size:18px;text-align:left">
-				Permissoes
+				Permissões
 			</div>
 		<br />
 		
@@ -70,6 +71,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
-</div>
+
 {% endblock %}

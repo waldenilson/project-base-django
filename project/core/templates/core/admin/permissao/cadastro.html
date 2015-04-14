@@ -5,14 +5,14 @@
 	Acesso Restrito | Permissao | Cadastro
 {% endblock %}
 
+{% block subtitulo %}
+	
+	CADASTRAR PERMISSÃO
+	
+{% endblock %}
+
 {% block formulario %}
-<div id="tabs" style="color:black;width:100%;font-size:11px">
 
-<ul>
-	<li><a href="#tabs-1">CADASTRAR PERMISSAO</a></li>
-</ul>
-
-<div id="tabs-1">		
 	<form method="post" action="">
 		{% csrf_token %}
 		<div style="width:100%;font-size:12px;text-align:left">
@@ -40,6 +40,5 @@
 			</tr>
 		</table>
 	</form>
-</div>	
-</div>
+
 {% endblock %}

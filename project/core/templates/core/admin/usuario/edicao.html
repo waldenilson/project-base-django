@@ -4,18 +4,20 @@
 	Acesso Restrito | Usuario | Edicao
 {% endblock %}
 
+{% block subtitulo %}
+	
+	EDITAR USUÁRIO
+	
+{% endblock %}
+
+
 {% block formulario %}
-<div id="tabs" style="color:black;width:100%;font-size:11px">
-<ul>
-	<li><a href="#tabs-1">EDITAR USUARIO</a></li>
-</ul>
-<div id="tabs-1">		
 		
 	<form method="post" action=".">
 		{% csrf_token %}
 		<div style="width:100%;font-size:12px;text-align:left">
 				<table>
-				   <tr> <td class="colunaTabela"> <label>Nome:</label> </td><td> <input size="35" value="{{ user_obj.first_name }}" name="first_name" /> </td> </tr>
+				   <tr> <td class="colunaTabela"> <label>Nome:</label> </td><td> <input value="{{ user_obj.first_name }}" name="first_name" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Sobrenome:</label> </td><td> <input value="{{ user_obj.last_name }}" name="last_name" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Email:</label> </td><td> <input name="email" value="{{ user_obj.email }}" /> </td> </tr>
 				   <tr> <td class="colunaTabela"> <label>Login:</label> </td><td> <input value="{{ user_obj.username }}" name="username" /> </td> </tr>
@@ -75,6 +77,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
-</div>
+
 {% endblock %}
