@@ -32,7 +32,7 @@ def consulta(request):
     lista = lista.order_by( 'username' )
     #gravando na sessao o resultado da consulta preparando para o relatorio/pdf
     request.session['relatorio_usuario'] = lista
-    return render_to_response('core/admin/usuario/consulta.html' ,{'lista':lista}, context_instance = RequestContext(request))
+    return render_to_response('core/admin/usuario/consulta.html' ,{'lista':lista,'request':request}, context_instance = RequestContext(request))
 
 @permission_required('usuario_cadastro', login_url='/excecoes/permissao_negada/')
 def cadastro(request):
