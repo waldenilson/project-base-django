@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^usuario/consulta/', 'project.core.admin.usuario.consulta'),
     url(r'^usuario/cadastro/', 'project.core.admin.usuario.cadastro'),
     url(r'^usuario/edicao/(?P<id>\d+)/', 'project.core.admin.usuario.edicao'),
+    url(r'^usuario/relatorio/', 'project.core.admin.usuario.relatorio_ods'),
 
     # CONTROLE AUTENTICACAO
     url(r'^login/', 'django.contrib.auth.views.login', {"template_name":"core/index.html"}),

@@ -32,8 +32,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="colunaTabela" colspan="2" style="text-align:left"> 
+					<td class="colunaTabela" style="text-align:left"> 
 						<div>Total de registros: {{ request.session.relatorio_usuario|length }}</div>
+					</td>
+					<td class="colunaTabela" style="text-align:right"> 
+						<div> 
+							<a href="/usuario/relatorio/"> <img width="36" alt="ODS" src="{{STATIC_URL}}img/ods.png" /> </a>					
 					</td>
 				</tr>
 			</table>

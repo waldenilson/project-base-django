@@ -238,37 +238,41 @@ def edicao_usuario_logado(request, id):
 @permission_required('sicop.usuario_consulta', login_url='/excecoes/permissao_negada/')
 def relatorio_ods(request):
 
+    global nome_relatorio
     # montar objeto lista com os campos a mostrar no relatorio/pdf
     lista = request.session[nome_relatorio]
     
-    if lista:
-        ods = ODS()
-        sheet = relatorio_ods_base_header(planilha_relatorio, titulo_relatorio, ods)
+    #GERACAO
+    nome_rel = "relatorio-encomendas"
+    titulo_relatorio    = "RELATORIO DE USUARIOS"
+    planilha_relatorio  = "Usuarios"
+    ods = ODS()
+    sheet = relatorio_ods_base_header(planilha_relatorio, titulo_relatorio, len(lista), ods)
         
-        # subtitle
-        sheet.getCell(0, 1).setAlignHorizontal('center').stringValue( 'Nome' ).setFontSize('14pt')
-        sheet.getCell(1, 1).setAlignHorizontal('center').stringValue( 'Divisao' ).setFontSize('14pt')
-        sheet.getRow(1).setHeight('20pt')
+    # TITULOS DAS COLUNAS
+    sheet.getCell(0, 6).setAlignHorizontal('center').stringValue( 'Nome' ).setFontSize('14pt').setBold(True).setCellColor("#ccff99")
+    sheet.getCell(1, 6).setAlignHorizontal('center').stringValue( 'Email' ).setFontSize('14pt').setBold(True).setCellColor("#ccff99")
+    sheet.getRow(1).setHeight('20pt')
+    sheet.getRow(2).setHeight('20pt')
+    sheet.getRow(6).setHeight('20pt')
         
-    #TRECHO PERSONALIZADO DE CADA CONSULTA
-        #DADOS
-        x = 0
-        for obj in lista:
-            sheet.getCell(0, x+2).setAlignHorizontal('center').stringValue(obj.username)
-            sheet.getCell(1, x+2).setAlignHorizontal('center').stringValue(obj.tbdivisao.nmdivisao)    
-            x += 1
-        
-    #TRECHO PERSONALIZADO DE CADA CONSULTA     
-       
-        relatorio_ods_base(ods, planilha_relatorio)
-        # generating response
-        response = HttpResponse(mimetype=ods.mimetype.toString())
-        response['Content-Disposition'] = 'attachment; filename='+nome_relatorio+'.ods'
-        ods.save(response)
+    sheet.getColumn(0).setWidth("1in")
+    sheet.getColumn(1).setWidth("2.5in")
+
+    #DADOS DA CONSULTA
+    x = 5
+    for obj in lista:
+        sheet.getCell(0, x+2).setAlignHorizontal('center').stringValue(obj.username)
+        sheet.getCell(1, x+2).setAlignHorizontal('center').stringValue(obj.email)
+        x += 1
+
+    relatorio_ods_base(ods, planilha_relatorio)
+    # generating response
+    response = HttpResponse(mimetype=ods.mimetype.toString())
+    response['Content-Disposition'] = 'attachment; filename='+nome_rel+'.ods'
+    ods.save(response)
     
-        return response
-    else:
-        return HttpResponseRedirect( response_consulta )
+    return response
 
 
 def validacao(request_form, acao):
