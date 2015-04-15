@@ -149,7 +149,7 @@ def edicao(request, id):
                                    date_joined = user_obj.date_joined
                                    )
             usuario.save()
-            return HttpResponseRedirect("/usuario/edicao/"+str(id)+"/")
+            return HttpResponseRedirect("/usuario/consulta/")
     
     return render_to_response('core/admin/usuario/edicao.html', 
                               {'result':result,'grupo':grupo,'usergrupo':userGrupo,'user_obj':user_obj}, context_instance = RequestContext(request))

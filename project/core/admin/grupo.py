@@ -96,7 +96,7 @@ def edicao(request, id):
                                         name = request.POST['nome']
                                       )
             f_grupo.save()
-            return HttpResponseRedirect("/grupo/edicao/"+str(id)+"/")
+            return HttpResponseRedirect("/grupo/consulta/")
     return render_to_response('core/admin/grupo/edicao.html', {'content':contenttype,"grupo":instance,'result':result,'permissao':permissao,'grupopermissao':grupoPermissao}, context_instance = RequestContext(request))
 
 @permission_required('grupo_consulta', login_url='/excecoes/permissao_negada/')

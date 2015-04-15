@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 14/04/2015 às 19:00
+-- Tempo de geração: 14/04/2015 às 21:01
 -- Versão do servidor: 5.5.41-0ubuntu0.14.04.1
 -- Versão do PHP: 5.5.9-1ubuntu4.7
 
@@ -148,6 +148,13 @@ CREATE TABLE IF NOT EXISTS `django_content_type` (
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Fazendo dump de dados para tabela `django_content_type`
+--
+
+INSERT INTO `django_content_type` (`id`, `name`, `app_label`, `model`) VALUES
+(1, 'Funcionalidade', 'core', 'django');
 
 -- --------------------------------------------------------
 

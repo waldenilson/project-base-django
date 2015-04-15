@@ -46,7 +46,7 @@ def cadastro(request):
             f_permissao = AuthPermission(
                               name = request.POST['nome'],
                               codename = request.POST['codenome'],
-                              content_type = DjangoContentType.objects.get(pk = request.POST['content'])
+                              content_type = DjangoContentType.objects.get(pk = 1)
                               )
             f_permissao.save()
             if next == "/":
@@ -69,11 +69,11 @@ def edicao(request, id):
                               id = instance.id,
                               name = request.POST['nome'],
                               codename = request.POST['codenome'],
-                              content_type = DjangoContentType.objects.get(pk = request.POST['content'])
+                              content_type = DjangoContentType.objects.get(pk = 1)
                               )
             f_permissao.save()
  
-        return HttpResponseRedirect("/permissao/edicao/"+str(id)+"/")
+        return HttpResponseRedirect("/permissao/consulta/")
     
     return render_to_response('core/admin/permissao/edicao.html', {"permissao":instance,"content":content}, context_instance = RequestContext(request))
 
