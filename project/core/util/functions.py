@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from project.core.models import AuthUserGroups, AuthGroupPermissions

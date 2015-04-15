@@ -1,8 +1,5 @@
-'''
-Created on 04/07/2014
+# encoding: utf-8
 
-@author: waldenilson
-'''
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect

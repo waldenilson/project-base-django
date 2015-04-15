@@ -29,7 +29,6 @@ h1, h2, h3, h4, h5, h6{
 	padding:0;
 } 
 
-
 /* links */
 a,
 a:visited,
@@ -588,7 +587,7 @@ PRINT STYLESHEET
 .csstable tr:first-child td {
 	cursor: default;
 }
-.csstable tr:nth-child(odd){ background-color:#d4ffaa; }
+.csstable tr:nth-child(odd){ background-color:#d6effd; }
 .csstable tr:nth-child(even)    { background-color:#ffffff; }.csstable td{
 	vertical-align:middle;
 	

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 from django.contrib.auth.decorators import login_required, permission_required,\
     user_passes_test
 from django.shortcuts import render_to_response, get_object_or_404
@@ -116,9 +118,9 @@ def relatorio_ods(request):
 def validacao(request_form):
     warning = True
     if request_form.POST['nome'] == '':
-        messages.add_message(request_form,messages.WARNING,'Informe um nome para a permissao')
+        messages.add_message(request_form,messages.WARNING,'Informe um nome para a permissão')
         warning = False
     if request_form.POST['codenome'] == '':
-        messages.add_message(request_form,messages.WARNING,'Informe um codenome para a permissao')
+        messages.add_message(request_form,messages.WARNING,'Informe um codenome para a permissão')
         warning = False
     return warning

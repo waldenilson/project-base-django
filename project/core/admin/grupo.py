@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 from django.contrib.auth.decorators import login_required, permission_required,\
     user_passes_test
 from django.shortcuts import render_to_response, get_object_or_404
