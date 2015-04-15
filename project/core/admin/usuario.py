@@ -13,7 +13,7 @@ import json
 from collections import OrderedDict
 from django.http import HttpResponse
 from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
-from odslib import ODS
+from project.odslib import ODS
 from project.core.util.functions import verificar_permissao_grupo
 
 nome_relatorio      = "relatorio_usuario"

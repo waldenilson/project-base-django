@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from project.core.util.functions import verificar_permissao_grupo
 from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
-from odslib import ODS
+from project.odslib import ODS
 
 nome_relatorio      = "relatorio_grupo"
 response_consulta  = "/grupo/consulta/"

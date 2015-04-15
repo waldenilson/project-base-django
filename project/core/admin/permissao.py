@@ -10,7 +10,7 @@ from django.contrib import messages
 from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
 from project.core.util.functions import verificar_permissao_grupo
 from django.http import HttpResponse
-from odslib import ODS
+from project.odslib import ODS
 from project import settings
 from django import conf
 import os
