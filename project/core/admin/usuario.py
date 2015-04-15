@@ -20,7 +20,7 @@ titulo_relatorio    = "Relatorio Usuarios"
 planilha_relatorio  = "Usuarios"
 
 
-@permission_required('usuario_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_usuario', login_url='/excecoes/permissao_negada/')
 def consulta(request):
     if request.method == "POST":
         first_name = request.POST['first_name']
@@ -34,7 +34,7 @@ def consulta(request):
     request.session['relatorio_usuario'] = lista
     return render_to_response('core/admin/usuario/consulta.html' ,{'lista':lista,'request':request}, context_instance = RequestContext(request))
 
-@permission_required('usuario_cadastro', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_usuario', login_url='/excecoes/permissao_negada/')
 def cadastro(request):
     
     grupo = AuthGroup.objects.all().order_by('name')
@@ -78,7 +78,7 @@ def cadastro(request):
     return render_to_response('core/admin/usuario/cadastro.html',{'result':result,'grupo':grupo}, context_instance = RequestContext(request))
 
 
-@permission_required('usuario_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_usuario', login_url='/excecoes/permissao_negada/')
 def edicao(request, id):
     
     grupo = AuthGroup.objects.all().order_by('name')
@@ -100,8 +100,8 @@ def edicao(request, id):
 
     if request.method == "POST":
         
-        if not request.user.has_perm('usuario_edicao'):
-            return HttpResponseRedirect('/excecoes/permissao_negada/') 
+#        if not request.user.has_perm('usuario_edicao'):
+#            return HttpResponseRedirect('/excecoes/permissao_negada/') 
 
         # verificando os grupos do usuario
         for obj in grupo:
@@ -235,7 +235,7 @@ def edicao_usuario_logado(request, id):
         return HttpResponseRedirect("/usuario/edicao/"+str(id)+"/")
 
 
-@permission_required('sicop.usuario_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_usuario', login_url='/excecoes/permissao_negada/')
 def relatorio_ods(request):
 
     global nome_relatorio

@@ -16,7 +16,7 @@ titulo_relatorio    = "Relatorio Grupos"
 planilha_relatorio  = "Grupos"
 
 
-@permission_required('grupo_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_grupo', login_url='/excecoes/permissao_negada/')
 def consulta(request):
     if request.method == "POST":
         nome = request.POST['name']
@@ -28,7 +28,7 @@ def consulta(request):
     request.session['relatorio_grupo'] = lista
     return render_to_response('core/admin/grupo/consulta.html' ,{'lista':lista,'request':request}, context_instance = RequestContext(request))
 
-@permission_required('grupo_cadastro', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_grupo', login_url='/excecoes/permissao_negada/')
 def cadastro(request):
     if request.method == "POST":
         next = request.GET.get('next', '/')    
@@ -43,7 +43,7 @@ def cadastro(request):
                 return HttpResponseRedirect( next ) 
     return render_to_response('core/admin/grupo/cadastro.html',{}, context_instance = RequestContext(request))
     
-@permission_required('grupo_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_grupo', login_url='/excecoes/permissao_negada/')
 def edicao(request, id):
 
     permissao = AuthPermission.objects.all().order_by('content_type')
@@ -66,8 +66,8 @@ def edicao(request, id):
     instance = get_object_or_404(AuthGroup, id=id)
     if request.method == "POST":
         
-        if not request.user.has_perm('grupo_edicao'):
-            return HttpResponseRedirect('/excecoes/permissao_negada/') 
+#        if not request.user.has_perm('grupo_edicao'):
+#            return HttpResponseRedirect('/excecoes/permissao_negada/') 
 
 
         # verificando os grupos do usuario
@@ -99,7 +99,7 @@ def edicao(request, id):
             return HttpResponseRedirect("/grupo/consulta/")
     return render_to_response('core/admin/grupo/edicao.html', {'content':contenttype,"grupo":instance,'result':result,'permissao':permissao,'grupopermissao':grupoPermissao}, context_instance = RequestContext(request))
 
-@permission_required('grupo_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_grupo', login_url='/excecoes/permissao_negada/')
 def relatorio_ods(request):
 
     # montar objeto lista com os campos a mostrar no relatorio/pdf

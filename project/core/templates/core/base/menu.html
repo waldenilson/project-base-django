@@ -6,13 +6,13 @@
 					</a>
 					</li>
 															
-					{% if perms.usuario_consulta %}
+					{% if perms.controle_usuario %}
 					<li><a href="/usuario/consulta/">Usuário</a></li>
 					{% endif %}
-					{% if perms.grupo_consulta %}
+					{% if perms.controle_grupo %}
 					<li><a href="/grupo/consulta/">Grupo</a></li>
 					{% endif %}
-					{% if perms.permissao_consulta %}
+					{% if perms.controle_permissao %}
 					<li><a href="/permissao/consulta/">Permissão</a></li>
 					{% endif %}
 					

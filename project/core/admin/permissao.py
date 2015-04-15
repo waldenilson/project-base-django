@@ -24,7 +24,7 @@ response_consulta  = "/permissao/consulta/"
 titulo_relatorio    = "Relatorio Permissoes"
 planilha_relatorio  = "Permissoes"
 
-@permission_required('sicop.permissao_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_permissao', login_url='/excecoes/permissao_negada/')
 def consulta(request):
     lista = AuthPermission.objects.all()
     if request.method == "POST":
@@ -36,7 +36,7 @@ def consulta(request):
     request.session[nome_relatorio] = lista
     return render_to_response('core/admin/permissao/consulta.html' ,{'lista':lista,'request':request}, context_instance = RequestContext(request))
 
-@permission_required('permissao_cadastro', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_permissao', login_url='/excecoes/permissao_negada/')
 def cadastro(request):
     content = DjangoContentType.objects.all()#.filter( tbdivisao__id = AuthUser.objects.get( pk = request.user.id ).tbdivisao.id ).order_by('nmtipocaixa')
        
@@ -55,14 +55,14 @@ def cadastro(request):
                 return HttpResponseRedirect(next)
     return render_to_response('core/admin/permissao/cadastro.html',{"content":content}, context_instance = RequestContext(request))
 
-@permission_required('permissao_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_permissao', login_url='/excecoes/permissao_negada/')
 def edicao(request, id):
     content = DjangoContentType.objects.all()#.filter( tbdivisao__id = AuthUser.objects.get( pk = request.user.id ).tbdivisao.id ).order_by('nmtipocaixa')
     instance = get_object_or_404(AuthPermission, id=id)
     if request.method == "POST":
 
-        if not request.user.has_perm('sicop.permissao_edicao'):
-            return HttpResponseRedirect('/excecoes/permissao_negada/') 
+#        if not request.user.has_perm('sicop.permissao_edicao'):
+#            return HttpResponseRedirect('/excecoes/permissao_negada/') 
 
         if validacao(request):
             f_permissao = AuthPermission(
@@ -78,7 +78,7 @@ def edicao(request, id):
     return render_to_response('core/admin/permissao/edicao.html', {"permissao":instance,"content":content}, context_instance = RequestContext(request))
 
 
-@permission_required('permissao_consulta', login_url='/excecoes/permissao_negada/')
+@permission_required('controle_permissao', login_url='/excecoes/permissao_negada/')
 def relatorio_ods(request):
 
     # montar objeto lista com os campos a mostrar no relatorio/pdf
