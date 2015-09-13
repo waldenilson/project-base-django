@@ -3,18 +3,20 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from project.core.models import AuthUserGroups, AuthGroupPermissions
-import datetime
+import datetime, os
+from django.template import loader,Context
+import settings as configuracao
+from xhtml2pdf import pisa
 
 def ws(requisicao):
-	if requisicao.GET.get('key', False):
-		key = requisicao.GET['key']
-		if key == 'chave':
-			return 'ok'
-		else:
-			return '02'	
-	else:
-		return '01'
-
+    if requisicao.GET.get('key', False):
+        key = requisicao.GET['key']
+        if key == 'chave':
+            return 'ok'
+        else:
+            return '02' 
+    else:
+        return '01'
 
 def verificar_permissao_grupo(usuario, grupos):
     if usuario:
@@ -44,18 +46,18 @@ def relatorio_ods_base_header( nome_planilha, titulo_planilha, total_registro, o
     sheet.setSheetName( nome_planilha )
     
     # title
-    sheet.getCell(0, 0).setAlignHorizontal('center').stringValue( titulo_planilha ).setFontSize('20pt').setBold(True).setCellColor("#ccff99")
-    sheet.getRow(0).setHeight('25pt')
+    sheet.getCell(0, 0).setAlignHorizontal('center').stringValue( titulo_planilha ).setFontSize('14pt').setBold(True).setCellColor("#79bbff")
+    sheet.getRow(0).setHeight('18pt')
     sheet.getColumn(0).setWidth('10cm')
     
     data_geracao = datetime.datetime.now()
     data_extenso = str(data_geracao.day)+' de '+mes_do_ano_texto(data_geracao.month)+" de "+str(data_geracao.year) 
         
-    sheet.getCell(0,1).setAlignHorizontal('center').stringValue( 'Data: ' ).setFontSize('16pt').setBold(True)
-    sheet.getCell(1,1).stringValue( str( data_extenso ) ).setFontSize('14pt')
+    sheet.getCell(0,1).setAlignHorizontal('center').stringValue( 'Data: ' ).setFontSize('12pt').setBold(True)
+    sheet.getCell(1,1).stringValue( str( data_extenso ) ).setFontSize('10pt')
 
-    sheet.getCell(0,2).setAlignHorizontal('center').stringValue( 'Total: ' ).setFontSize('16pt').setBold(True)
-    sheet.getCell(1,2).stringValue( str(total_registro) ).setFontSize('14pt')
+    sheet.getCell(0,2).setAlignHorizontal('center').stringValue( 'Total: ' ).setFontSize('12pt').setBold(True)
+    sheet.getCell(1,2).stringValue( str(total_registro) ).setFontSize('10pt')
                 
     ods.content.mergeCells(0,0,7,1)
     ods.content.mergeCells(1,1,2,1)
@@ -87,3 +89,49 @@ def mes_do_ano_texto(inteiro):
     elif inteiro == 12: mes_texto = "Dezembro"
     
     return mes_texto
+
+def formatDataToText( formato_data ):
+    if formato_data:
+        if len(str(formato_data.day)) < 2:
+            dtaberturaprocesso = '0'+str(formato_data.day)+"/"
+        else:
+            dtaberturaprocesso = str(formato_data.day)+"/"
+        if len(str(formato_data.month)) < 2:
+            dtaberturaprocesso += '0'+str(formato_data.month)+"/"
+        else:
+            dtaberturaprocesso += str(formato_data.month)+"/"
+        dtaberturaprocesso += str(formato_data.year)
+        return str( dtaberturaprocesso )
+    else:
+        return "";
+
+def gerar_pdf(request, template_path, data, name):
+    t = loader.get_template(template_path)
+    c = Context(data)
+    html =  t.render(c)
+    file = open(os.path.join(configuracao.MEDIA_ROOT+'/tmp', name), "w+b")
+    pisaStatus = pisa.CreatePDF(html, dest=file)
+    file.seek(0)
+    pdf = file.read()
+    file.close()            # Don't forget to close the file handle
+    return HttpResponse(pdf, mimetype='application/pdf')
+
+def link_callback(uri, rel):
+    # use short variable names
+    sUrl = settings.STATIC_URL      # Typically /static/
+    sRoot = settings.STATIC_ROOT    # Typically /home/userX/project_static/
+    mUrl = settings.MEDIA_URL       # Typically /static/media/
+    mRoot = settings.MEDIA_ROOT     # Typically /home/userX/project_static/media/
+
+    # convert URIs to absolute system paths
+    if uri.startswith(mUrl):
+        path = os.path.join(mRoot, uri.replace(mUrl, ""))
+    elif uri.startswith(sUrl):
+        path = os.path.join(sRoot, uri.replace(sUrl, ""))
+
+    # make sure that file exists
+    if not os.path.isfile(path):
+            raise Exception(
+                    'media URI must start with %s or %s' % \
+                    (sUrl, mUrl))
+    return path
