@@ -1,17 +1,14 @@
 # encoding: utf-8
+# encoding: utf-8
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import REDIRECT_FIELD_NAME, login
-from project import settings
-from django.shortcuts import resolve_url
-from django.utils.http import is_safe_url
-from django.http.response import HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.contrib.sites.models import get_current_site
-from django.template.response import TemplateResponse
-
+from project import settings
+from decouple import config
 
 def login_form(request):
     
@@ -34,4 +31,5 @@ def login_form(request):
     
         return {'login_form': form}
 
-
+def init(request):
+    return {'LINK':settings.STATIC_LINK,'STATIC_URL':config('STATIC_URL',default='/static/'),'REDIRECT_LOGIN':config('REDIRECT_LOGIN',default='/')}
