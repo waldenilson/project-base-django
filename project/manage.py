@@ -9,6 +9,5 @@ except ImportError:
     sys.exit(1)
 
 import settings
-
 if __name__ == "__main__":
     execute_manager(settings)
