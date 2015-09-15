@@ -35,7 +35,7 @@
 		       
         <div id="banner">        
         	<div id="logo">
-				<a href="basic.html">
+				<a href="{{LINK}}">
 <!--					<img src="{{STATIC_URL}}img/logo.png" alt="nome do projeto"> -->
 					<h1 style="margin-top:15px"><a href="/"> NOME DO PROJETO </a></h1>
 				</a>
@@ -47,17 +47,18 @@
 						{% if user.is_active %}
 							<div style="font-size:12px;text-align:center">
 								Usuário:
-								<a href="usuario/edicao/{{user.id}}/">
+								<a href="{{LINK}}usuario/edicao/{{user.id}}/">
 								{% filter force_escape %} {% firstof user.short_name user.username %} {% endfilter %}
 								</a>
 								&nbsp;|&nbsp;
-								<a href="/logout/">Sair do Sistema</a>
+								<a href="{{LINK}}logout/">Sair do Sistema</a>
 							</div>
 						{% else %}
 						
 							<div style="font-size:12px">
-								<form action="/login/" method="post">
+								<form action="{{LINK}}login/" method="post">
 									{% csrf_token %}
+									<input type="hidden" value="{{REDIRECT_LOGIN}}" name="next" />
 									<input placeholder="Usuário" id="id_username" size="20" maxlength="254" name="username" type="text" />
 									<br />
 									<input style="margin-top:5px" placeholder="Senha" id="id_password" size="12" name="password" type="password" />
