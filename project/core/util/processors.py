@@ -32,4 +32,9 @@ def login_form(request):
         return {'login_form': form}
 
 def init(request):
-    return {'LINK':settings.STATIC_LINK,'STATIC_URL':config('STATIC_URL',default='/static/'),'REDIRECT_LOGIN':config('REDIRECT_LOGIN',default='/')}
+    return {
+                'LINK':settings.STATIC_LINK,
+                'STATIC_URL':config('STATIC_URL',default='/static/'),
+                'REDIRECT_LOGIN':config('REDIRECT_LOGIN',default='/'),
+                'THEME':config('THEME_DEFAULT',default='default')
+            }

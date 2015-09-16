@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>{% block subtitulo %} {% endblock %} : NOME DO PROJETO</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Ubuntu' rel='stylesheet' type='text/css'>
+	
+	<!--THEME-->
+	<link rel="icon" type="image/jpg" href="{{STATIC_URL}}theme/{{THEME}}/img/favicon.png" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{STATIC_URL}}theme/{{THEME}}/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{{STATIC_URL}}theme/{{THEME}}/css/basic-style.css" />
+
+	<link rel="stylesheet" type="text/css" media="screen" href="{{STATIC_URL}}css/jquery-ui.css" />
+	<script src="{{STATIC_URL}}js/jquery-1.9.1.js"></script>
+	<script src="{{STATIC_URL}}js/jquery_maskedinput.js"></script>
+	<script src="{{STATIC_URL}}js/js.js"></script>
+
+</head>
+
+<body id="home">
+  
+<!-- header area -->
+    <header class="wrapper clearfix">
+		       
+        <div id="banner">        
+        	<div id="logo">
+				<a href="{{LINK}}">
+<!--					<img src="{{STATIC_URL}}img/logo.png" alt="nome do projeto"> -->
+					<h1 style="margin-top:15px"><a href="/"> NOME DO PROJETO </a></h1>
+				</a>
+			</div> 
+        </div>
+        
+        <!-- main navigation -->
+        <nav id="topnav" role="navigation">
+						{% if user.is_active %}
+							<div style="font-size:12px;text-align:center">
+								Usuário:
+								<a href="{{LINK}}usuario/edicao/{{user.id}}/">
+								{% filter force_escape %} {% firstof user.short_name user.username %} {% endfilter %}
+								</a>
+								&nbsp;|&nbsp;
+								<a href="{{LINK}}logout/">Sair do Sistema</a>
+							</div>
+						{% else %}
+						
+							<div style="font-size:12px">
+								<form action="{{LINK}}login/" method="post">
+									{% csrf_token %}
+									<input type="hidden" value="{{REDIRECT_LOGIN}}" name="next" />
+									<input placeholder="Usuário" id="id_username" size="20" maxlength="254" name="username" type="text" />
+									<br />
+									<input style="margin-top:5px" placeholder="Senha" id="id_password" size="12" name="password" type="password" />
+									<br/>
+									<button class="button_green" style="margin-top:5px" type="submit">ENTRAR</button>
+								</form>
+							</div>
+						{% endif %}					
+		</nav><!-- #topnav -->
+  
+    </header><!-- end header -->
+ 
+ 
+<section id="page-header" class="clearfix">    
+
+	<div class="wrapper">
+		<h3>Você está aqui: {% block breadcumbs %} {% endblock %}</h3>
+	</div>
+
+</section>
+
+
+<!-- main content area -->   
+<div class="wrapper" id="main" style="margin-top:-20px"> 
+    
+     
+      
+    <!-- sidebar -->    
+    <aside>
+            <nav id="secondary-navigation">
+				{% include "core/base/menu.html" %}
+             </nav>
+      </aside><!-- #end sidebar -->
+   
+<!-- content area -->    
+	<section id="content">   
+		{% block index %} {% endblock %}                
+	</section><!-- #end content area -->
+
+
+  </div><!-- #end div #main .wrapper -->
+    
+
+
+<!-- footer area -->    
+<footer>
+	<div id="colophon" class="wrapper clearfix">
+    	&copy; ANO - NOME DO PROJETO - Revisão X
+    </div>
+    
+	<div id="attribution" class="wrapper clearfix" style="color:#666; font-size:11px;">Desenvolvido em Software Livre</div>
+    
+</footer><!-- #end footer area --> 
+
+
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+</body>
+</html>
