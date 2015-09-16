@@ -2,10 +2,11 @@
 
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
+from django.template import loader,Context
 from project.core.models import AuthUserGroups, AuthGroupPermissions
 import datetime, os
-from django.template import loader,Context
 import settings as configuracao
+import smtplib
 from xhtml2pdf import pisa
 
 def ws(requisicao):
@@ -135,3 +136,15 @@ def link_callback(uri, rel):
                     'media URI must start with %s or %s' % \
                     (sUrl, mUrl))
     return path
+
+def send_smtp(to, user, pwd, smtp, assunto, msg):
+    try:
+        smtpserver = smtplib.SMTP_SSL(smtp)
+        smtpserver.login(user, pwd)
+        header = 'To:' + to + '\n' + 'From: ' + user + '\n' + 'Subject:'+assunto+' \n'
+        msg = header + msg
+        smtpserver.sendmail(gmail_user, to, msg)
+        smtpserver.close()
+        return True
+    except:
+        return False
