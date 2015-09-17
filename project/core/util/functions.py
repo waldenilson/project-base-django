@@ -1,13 +1,14 @@
 # encoding: utf-8
-
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader,Context
 from project.core.models import AuthUserGroups, AuthGroupPermissions
 import datetime, os
 import settings as configuracao
-import smtplib
+import smtplib, ConfigParser
 from xhtml2pdf import pisa
+from os.path import abspath, join, dirname
+from decouple import config
 
 def ws(requisicao):
     if requisicao.GET.get('key', False):
@@ -148,3 +149,8 @@ def send_smtp(to, user, pwd, smtp, assunto, msg):
         return True
     except:
         return False
+
+def translate(section, key):
+    file_ini = ConfigParser.ConfigParser()
+    file_ini.read( abspath(join(dirname(__file__), '../../../translation/'+config('TRANSLATION',default='default')+'.ini')) )
+    print file_ini.get(section,key)
