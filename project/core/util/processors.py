@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.sites.models import get_current_site
 from project import settings
 from decouple import config
-from core.util.functions import translate
 
 def login_form(request):
     

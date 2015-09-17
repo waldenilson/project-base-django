@@ -151,6 +151,9 @@ def send_smtp(to, user, pwd, smtp, assunto, msg):
         return False
 
 def translate(section, key):
-    file_ini = ConfigParser.ConfigParser()
-    file_ini.read( abspath(join(dirname(__file__), '../../../translation/'+config('TRANSLATION',default='default')+'.ini')) )
-    print file_ini.get(section,key)
+    try:
+        file_ini = ConfigParser.ConfigParser()
+        file_ini.read( abspath(join(dirname(__file__), '../../../translation/'+config('TRANSLATION',default='default')+'.ini')) )
+        return file_ini.get(section,key)
+    except:
+        return ''
