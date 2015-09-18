@@ -1,17 +1,19 @@
-{% extends "core/base/consulta.html" %} 
+{% extends "core/base/pagina.html" %} 
 {% load static %} 
+
+{% block title %}
+	Consulta de usuário	
+{% endblock %}
+
+{% block subtitle %}
+	CONSULTAR USUÁRIO
+{% endblock %}
 
 {% block breadcumbs %}
 	Acesso Restrito | Usuario
 {% endblock %}
 
-{% block subtitulo %}
-	
-	CONSULTAR USUÁRIO
-	
-{% endblock %}
-
-{% block consulta %}
+{% block form %}
 	
 		<form action="." method="post">
 			{% csrf_token %}
@@ -44,7 +46,7 @@
 		</form>
 {% endblock %}
 
-{% block resultado %}
+{% block result %}
 		
 		<table class="csstable">
 			<tbody>

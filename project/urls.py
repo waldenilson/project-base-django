@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 
 	#urls web
     url(r'^$', 'project.core.views.home', name='home'),
+    url(r'^web/(?P<name>.*)/', 'project.core.views.page', name='page'),
 
     #urls webservice
     url(r'^ws/usuarios', 'project.core.ws.views.usuarios', name='usuarios'),

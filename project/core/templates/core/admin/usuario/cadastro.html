@@ -1,17 +1,19 @@
-{% extends "core/base/cadastro.html" %} 
+{% extends "core/base/pagina.html" %} 
 {% load static %} 
 
 {% block breadcumbs %}
 	Acesso Restrito | Usuário | Cadastro
 {% endblock %}
 
-{% block subtitulo %}
-	
-	CADASTRAR USUÁRIO
-	
+{% block title %}
+	Cadastro de usuário	
 {% endblock %}
 
-{% block formulario %}
+{% block subtitle %}
+	CADASTRAR USUÁRIO
+{% endblock %}
+
+{% block form %}
 		
 	<form method="post" action=".">
 		{% csrf_token %}

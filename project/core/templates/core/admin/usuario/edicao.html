@@ -1,17 +1,20 @@
-{% extends "core/base/cadastro.html" %} 
+{% extends "core/base/pagina.html" %} 
 {% load static %} 
+
 {% block breadcumbs %}
 	Acesso Restrito | Usuário | Edição
 {% endblock %}
 
-{% block subtitulo %}
-	
+{% block title %}
+	Edição do usuário	
+{% endblock %}
+
+{% block subtitle %}
 	EDITAR USUÁRIO
-	
 {% endblock %}
 
 
-{% block formulario %}
+{% block form %}
 		
 	<form method="post" action=".">
 		{% csrf_token %}

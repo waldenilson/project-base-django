@@ -1,0 +1,44 @@
+{% extends "default/html/page.html" %}
+{% load static %} 
+
+{% block main %}
+
+	{% block mensagem %}
+		
+		{% if messages %}
+			<div id="dialog-modal" title="Aviso(s)">
+				<ul class="messages">
+				    {% for message in messages %}
+				    	<li{% if message.tags %} 
+				    		style="color: 
+								{% if message.level == 20 %} 
+									blue
+								{% endif %}
+								{% if message.level == 30 %} 
+									orange
+								{% endif %}
+								{% if message.level == 40 %} 
+									red
+								{% endif %}
+								; font-size: 15px"
+				    		class="{{ message.tags }}"{% endif %}> {{ message }}</li>
+				    {% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	
+	{% endblock %}
+
+
+		
+		<h2>{% block subtitle %} {% endblock %}</h2>
+		
+		<div style="text-align:center">
+				<!-- 		FORMULARIOS DOS FILTROS / CONSULTAS -->
+				{% block form %} {% endblock %}
+			
+				<!-- 		RESULTADO DOS FILTROS / CONSULTAS		 -->
+				{% block result %} {% endblock %}		
+		</div>
+	
+{% endblock %}
