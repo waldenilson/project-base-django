@@ -13,11 +13,6 @@
 	CONSULTAR GRUPO
 {% endblock %}
 
-{% block head %}	
-	<script src="//cdn.ckeditor.com/4.5.3/standard/ckeditor.js"></script>
-{% endblock %}
-
-
 {% block form %}
 	<form action="." method="post">
 			{% csrf_token %}
@@ -26,15 +21,6 @@
 				   <tr> 
 				   		<td class="colunaTabela"> <label>Nome:</label> </td><td> <input style="width:100%" name="name" /> </td>
 				   </tr>
-				   <tr>
-				   		<td colspan="2"> 
-				   			<textarea id="editor_grupo" name="descricao">
-				   			</textarea> 
-							<script>
-				                CKEDITOR.replace( 'editor_grupo' );
-				            </script>
-				   		</td>
-				   </tr>	
 				</tbody>
 			</table>
 			<br />
