@@ -12,7 +12,7 @@ import hashlib
 import json
 from collections import OrderedDict
 from django.http import HttpResponse
-from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
+from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base, gerar_pdf
 from project.odslib import ODS
 from project.core.util.functions import verificar_permissao_grupo
 
@@ -276,6 +276,13 @@ def relatorio_ods(request):
     
     return response
 
+@permission_required('controle_usuario', login_url='/excecoes/permissao_negada/')
+def relatorio_pdf(request):
+    dados = {
+        'title':'Relatório de Usuários',
+        'html':'<strong>Waldenilson</strong>'
+    }
+    return gerar_pdf(request,'core/base/relatorio_consulta_pdf.html',dados,'relatorio.pdf')
 
 def validacao(request_form, acao):
     warning = True

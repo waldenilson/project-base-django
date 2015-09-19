@@ -8,7 +8,7 @@ from project.core.models import AuthGroup, AuthPermission,\
     AuthGroupPermissions, AuthUser, DjangoContentType
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
-from project.core.util.functions import verificar_permissao_grupo
+from project.core.util.functions import verificar_permissao_grupo, gerar_pdf
 from project.core.util.functions import relatorio_ods_base_header, relatorio_ods_base
 from project.odslib import ODS
 

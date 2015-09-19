@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^grupo/consulta/', 'project.core.admin.grupo.consulta'),
     url(r'^grupo/cadastro/', 'project.core.admin.grupo.cadastro'),
     url(r'^grupo/edicao/(?P<id>\d+)/', 'project.core.admin.grupo.edicao'),
-
+    
     url(r'^permissao/consulta/', 'project.core.admin.permissao.consulta'),
     url(r'^permissao/cadastro/', 'project.core.admin.permissao.cadastro'),
     url(r'^permissao/edicao/(?P<id>\d+)/', 'project.core.admin.permissao.edicao'),
@@ -31,7 +31,8 @@ urlpatterns = patterns('',
     url(r'^usuario/consulta/', 'project.core.admin.usuario.consulta'),
     url(r'^usuario/cadastro/', 'project.core.admin.usuario.cadastro'),
     url(r'^usuario/edicao/(?P<id>\d+)/', 'project.core.admin.usuario.edicao'),
-    url(r'^usuario/relatorio/', 'project.core.admin.usuario.relatorio_ods'),
+    url(r'^usuario/relatorio/ods/', 'project.core.admin.usuario.relatorio_ods'),
+    url(r'^usuario/relatorio/pdf/', 'project.core.admin.usuario.relatorio_pdf'),
 
     # CONTROLE AUTENTICACAO
     url(r'^login/', 'django.contrib.auth.views.login', {"template_name":"core/index.html"}),
