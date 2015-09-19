@@ -1,5 +1,4 @@
 # encoding: utf-8
-# encoding: utf-8
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_protect
@@ -36,5 +35,8 @@ def init(request):
                 'LINK':settings.STATIC_LINK,
                 'STATIC_URL':config('STATIC_URL',default='/static/'),
                 'REDIRECT_LOGIN':config('REDIRECT_LOGIN',default='/'),
-                'THEME':config('THEME_DEFAULT',default='default')
+                'THEME':config('THEME_DEFAULT',default='default'),
+                'NOME_PROJETO':config('NOME_PROJETO',default='NOME DO PROJETO'),
+                'VERSAO_PROJETO':config('VERSAO_PROJETO',default='VERSAO DO PROJETO'),
+                'ANO_PROJETO':config('ANO_PROJETO',default='ANO DO PROJETO')
             }
